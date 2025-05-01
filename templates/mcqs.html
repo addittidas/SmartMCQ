@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generated MCQs</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #4a6baf;
+            --secondary-color: #6c757d;
+            --accent-color: #8e9fbc;
+            --light-bg: #f8f9fa;
+            --dark-bg: #343a40;
+            --correct-color: #28a745;
+            --hover-color: #e9ecef;
+        }
+        
+        body {
+            background-color: #f5f7ff;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+        }
+        
+        .page-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: white;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        
+        .header h1 {
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            margin-bottom: 0;
+        }
+        
+        .pattern-overlay {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            opacity: 0.1;
+            background-image: radial-gradient(#fff 2px, transparent 2px);
+            background-size: 20px 20px;
+            border-radius: 12px;
+            pointer-events: none;
+        }
+        
+        .card {
+            border: none;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            overflow: hidden;
+            margin-bottom: 1.5rem;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .card-header {
+            background: #f8f9fa;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            padding: 1rem;
+        }
+        
+        .card-body {
+            padding: 1.5rem;
+            background-color: white;
+        }
+        
+        .card-title {
+            display: flex;
+            align-items: center;
+            font-weight: 600;
+            color: var(--dark-bg);
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+        }
+        
+        .question-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            margin-right: 12px;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+        
+        .form-check {
+            background-color: var(--light-bg);
+            border-radius: 8px;
+            padding: 12px 16px;
+            margin-bottom: 12px;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            border: 1px solid transparent;
+        }
+        
+        .form-check:hover {
+            background-color: var(--hover-color);
+            border-color: #dee2e6;
+        }
+        
+        .form-check-input {
+            margin-top: 0.3rem;
+        }
+        
+        .form-check-label {
+            cursor: pointer;
+            padding-left: 0.5rem;
+            user-select: none;
+        }
+        
+        .option-letter {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 24px;
+            height: 24px;
+            background-color: #e9ecef;
+            border-radius: 50%;
+            margin-right: 10px;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+        
+        .correct-answer {
+            display: none;
+            margin-top: 1rem;
+            padding: 12px;
+            background-color: rgba(40, 167, 69, 0.1);
+            border-left: 4px solid var(--correct-color);
+            border-radius: 4px;
+            font-weight: 500;
+            color: #155724;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            padding: 12px 28px;
+            font-weight: 600;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(50, 50, 93, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background-color: #3b5998;
+            border-color: #3b5998;
+            transform: translateY(-2px);
+            box-shadow: 0 7px 14px rgba(50, 50, 93, 0.1), 0 3px 6px rgba(0, 0, 0, 0.08);
+        }
+        
+        /* Score counter and progress elements */
+        .quiz-status {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 2rem;
+            padding: 15px;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+        
+        .score-container {
+            display: flex;
+            align-items: center;
+        }
+        
+        .score-label {
+            font-weight: 600;
+            color: var(--secondary-color);
+            margin-right: 10px;
+        }
+        
+        .score-value {
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--primary-color);
+        }
+        
+        .selected-option {
+            background-color: rgba(74, 107, 175, 0.1);
+            border-color: var(--primary-color);
+        }
+        
+        .correct-option {
+            background-color: rgba(40, 167, 69, 0.1);
+            border-color: var(--correct-color);
+        }
+        
+        .incorrect-option {
+            background-color: rgba(220, 53, 69, 0.1);
+            border-color: #dc3545;
+        }
+        
+        .result-icon {
+            float: right;
+            display: none;
+        }
+        
+        .result-icon.correct {
+            color: var(--correct-color);
+        }
+        
+        .result-icon.incorrect {
+            color: #dc3545;
+        }
+        
+        /* Buttons container */
+        .buttons-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .header {
+                padding: 1.5rem;
+            }
+            
+            .card-title {
+                font-size: 1.1rem;
+            }
+            
+            .quiz-status {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+        
+        /* Animation for correct answers */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.5s ease forwards;
+        }
+    </style>
+</head>
+<body>
+    <!-- Start of content -->
+    <div class="page-container">
+        <div class="header">
+            <h1 class="text-center">Generated MCQs</h1>
+            <div class="pattern-overlay"></div>
+        </div>
+        
+        <div class="quiz-status" id="quiz-status">
+            <div class="score-container">
+                <span class="score-label">Score:</span>
+                <span class="score-value" id="score-display">0/0</span>
+            </div>
+            <div class="progress-container">
+                <span id="progress-text">Answer the questions below</span>
+            </div>
+        </div>
+        
+        <div class="container" id="mcqs-container">
+            {% for index, mcq in mcqs %}
+                <div class="card mb-3 question-card" id="question-{{ index }}">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <span class="question-number">{{ index }}</span>
+                            {{ mcq[0] }}?
+                        </h5>
+                        <form>
+                            {% set options = ['A', 'B', 'C', 'D'] %}
+                            {% set num_choices = mcq[1]|length %}
+                            {% for choice_index in range(num_choices) %}
+                                <div class="form-check" data-question="{{ index }}" data-option="{{ options[choice_index] }}">
+                                    <input class="form-check-input" type="radio" name="answer{{ index }}" id="choice{{ index }}{{ choice_index }}" value="{{ options[choice_index] }}">
+                                    <label class="form-check-label" for="choice{{ index }}{{ choice_index }}">
+                                        <span class="option-letter">{{ options[choice_index] }}</span>
+                                        {{ mcq[1][choice_index] }}
+                                    </label>
+                                    <span class="result-icon correct"><i class="fas fa-check-circle"></i></span>
+                                    <span class="result-icon incorrect"><i class="fas fa-times-circle"></i></span>
+                                </div>
+                            {% endfor %}
+                        </form>
+                        <!-- Display the correct answer with a class -->
+                        <div class="correct-answer">
+                            <i class="fas fa-info-circle"></i> Correct Answer: {{ mcq[2] }}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+            
+            <div class="buttons-container">
+                <button id="show-results-btn" class="btn btn-primary">
+                    <i class="fas fa-check-circle me-2"></i> Show Results
+                </button>
+            </div>
+        </div>
+    </div>
+    <!-- End of content -->
+
+    <!-- JavaScript to handle showing results and interactions -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get all question cards
+            const questionCards = document.querySelectorAll('.question-card');
+            let totalQuestions = questionCards.length;
+            let answeredQuestions = 0;
+            let correctAnswers = 0;
+            
+            // Enable clicking on the entire form-check div
+            const options = document.querySelectorAll('.form-check');
+            options.forEach(option => {
+                option.addEventListener('click', function() {
+                    // Get the radio input within this option
+                    const radio = this.querySelector('input[type="radio"]');
+                    if (radio) {
+                        // Uncheck any previously selected option in this question
+                        const questionId = this.dataset.question;
+                        const questionOptions = document.querySelectorAll(`.form-check[data-question="${questionId}"]`);
+                        questionOptions.forEach(opt => {
+                            opt.classList.remove('selected-option');
+                        });
+                        
+                        // Check this radio and mark it as selected
+                        radio.checked = true;
+                        this.classList.add('selected-option');
+                        
+                        // Update answered questions count
+                        updateProgress();
+                    }
+                });
+            });
+            
+            // Function to update progress
+            function updateProgress() {
+                // Count selected options
+                answeredQuestions = 0;
+                questionCards.forEach(card => {
+                    const questionId = card.id.split('-')[1];
+                    const selectedOption = card.querySelector('input[type="radio"]:checked');
+                    if (selectedOption) {
+                        answeredQuestions++;
+                    }
+                });
+                
+                // Update progress text
+                const progressText = document.getElementById('progress-text');
+                if (answeredQuestions < totalQuestions) {
+                    progressText.textContent = `Answered ${answeredQuestions} of ${totalQuestions} questions`;
+                } else {
+                    progressText.textContent = 'All questions answered - Ready to check results!';
+                    progressText.style.color = '#28a745';
+                }
+            }
+            
+            // Show results functionality
+            document.getElementById('show-results-btn').addEventListener('click', function() {
+                // Get all elements with the 'correct-answer' class
+                const correctAnswerElements = document.getElementsByClassName('correct-answer');
+                correctAnswers = 0;
+                
+                // Check each answer
+                questionCards.forEach((card, index) => {
+                    const questionId = card.id.split('-')[1];
+                    const correctAnswerText = card.querySelector('.correct-answer').textContent;
+                    const correctLetter = correctAnswerText.match(/: ([A-D])/)[1];
+                    
+                    const selectedOption = card.querySelector('input[type="radio"]:checked');
+                    
+                    // Mark correct and incorrect options
+                    const allOptions = card.querySelectorAll('.form-check');
+                    allOptions.forEach(option => {
+                        const optionLetter = option.dataset.option;
+                        const resultIconCorrect = option.querySelector('.result-icon.correct');
+                        const resultIconIncorrect = option.querySelector('.result-icon.incorrect');
+                        
+                        if (optionLetter === correctLetter) {
+                            option.classList.add('correct-option');
+                            resultIconCorrect.style.display = 'inline-block';
+                        } else if (selectedOption && selectedOption.value === optionLetter) {
+                            option.classList.add('incorrect-option');
+                            resultIconIncorrect.style.display = 'inline-block';
+                        }
+                    });
+                    
+                    // Check if answer is correct
+                    if (selectedOption && selectedOption.value === correctLetter) {
+                        correctAnswers++;
+                    }
+                });
+                
+                // Loop through each element and display it with animation
+                for (let i = 0; i < correctAnswerElements.length; i++) {
+                    correctAnswerElements[i].style.display = 'block';
+                    correctAnswerElements[i].classList.add('fade-in');
+                }
+                
+                // Update score display
+                document.getElementById('score-display').textContent = `${correctAnswers}/${totalQuestions}`;
+                
+                // Hide the button after showing results
+                this.style.display = 'none';
+                
+                // Update progress text
+                const progressText = document.getElementById('progress-text');
+                if (correctAnswers === totalQuestions) {
+                    progressText.textContent = 'Perfect score! All answers correct!';
+                    progressText.style.color = '#28a745';
+                } else if (correctAnswers > totalQuestions / 2) {
+                    progressText.textContent = 'Good job! You passed the quiz.';
+                    progressText.style.color = '#17a2b8';
+                } else {
+                    progressText.textContent = 'Keep learning! You can do better next time.';
+                    progressText.style.color = '#dc3545';
+                }
+                
+                // Disable all radio buttons after showing results
+                const allRadios = document.querySelectorAll('input[type="radio"]');
+                allRadios.forEach(radio => {
+                    radio.disabled = true;
+                });
+            });
+        });
+    </script>
+</body>
+</html>

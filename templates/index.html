@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generate MCQs</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #4a6baf;
+            --secondary-color: #6c757d;
+            --accent-color: #8e9fbc;
+            --light-bg: #f5f7ff;
+            --dark-bg: #343a40;
+        }
+        
+        body {
+            background-color: var(--light-bg);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            background-color: #ffffff;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: white;
+            border-radius: 12px 12px 0 0;
+            padding: 2rem;
+            margin: -20px -20px 30px -20px;
+            position: relative;
+        }
+        
+        .header h1 {
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            margin-bottom: 0;
+        }
+        
+        .pattern-overlay {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            opacity: 0.1;
+            background-image: radial-gradient(#fff 2px, transparent 2px);
+            background-size: 20px 20px;
+            border-radius: 12px 12px 0 0;
+            pointer-events: none;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        
+        label {
+            font-weight: 600;
+            color: var(--dark-bg);
+            display: block;
+            margin-bottom: 8px;
+        }
+        
+        .form-control-file {
+            border: 1px solid #dce1e8;
+            border-radius: 8px;
+            padding: 10px;
+            width: 100%;
+        }
+        
+        select.form-control {
+            border-radius: 8px;
+            border: 1px solid #dce1e8;
+            padding: 10px;
+            width: 100%;
+            color: var(--dark-bg);
+            background-color: white;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            padding: 12px 28px;
+            font-weight: 600;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(50, 50, 93, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background-color: #3b5998;
+            border-color: #3b5998;
+            transform: translateY(-2px);
+            box-shadow: 0 7px 14px rgba(50, 50, 93, 0.1), 0 3px 6px rgba(0, 0, 0, 0.08);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Generate MCQs</h1>
+            <div class="pattern-overlay"></div>
+        </div>
+        
+        <p class="lead">This application generates multiple-choice questions (MCQs) based on the provided text. You can either upload a PDF or TXT file containing the text.</p>
+        
+        <form method="POST" enctype="multipart/form-data">
+            <div class="form-group" style="margin-top:50px;">
+                <label for="file">Upload File(s) (PDF or TXT)</label>
+                <input type="file" class="form-control-file" id="file" name="files[]" multiple>
+            </div>
+            <div class="form-group">
+                <label for="num_questions">Number of Questions:</label>
+                <select class="form-control" id="num_questions" name="num_questions" style="width:50%; margin:0 auto;">
+                    <option value="5">5</option>
+                    <option value="10">10</option>
+                    <option value="15">15</option>
+                    <option value="20">20</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Generate MCQs</button>
+        </form>
+    </div>
+</body>
+</html>
