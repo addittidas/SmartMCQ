@@ -26,4 +26,14 @@ This project implements a system that automatically generates multiple-choice qu
 - **Gensim**: For topic modeling, document indexing, and similarity retrieval.
 - **Levenshtein Distance**: Used for calculating string similarity.
 
+## Installation Procedure
 
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/your-username/mcq-generation.git
+   cd mcq-generation
+   ```
+
+## License
+This project is licensed under the MIT License - see the LICENSE file for details.
