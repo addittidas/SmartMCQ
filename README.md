@@ -1,6 +1,6 @@
 # SmartMCQ
 
-# MCQ Generation from Text using T5 and NLP
+## MCQ Generation from Text using T5 and NLP
 
 ## Overview
 
@@ -26,5 +26,4 @@ This project implements a system that automatically generates multiple-choice qu
 - **Gensim**: For topic modeling, document indexing, and similarity retrieval.
 - **Levenshtein Distance**: Used for calculating string similarity.
 
-## Project Structure
-. ├── app.py # Flask application script ├── templates │ ├── index.html # Home page where users can input text or upload a file │ ├── mcqs.html # Template for displaying generated MCQs ├── static # Folder for static files (CSS, JS) ├── requirements.txt # Python dependencies for the project ├── models # Directory for storing pre-trained models (e.g., T5, Sense2Vec) └── README.md # This documentation file
+
