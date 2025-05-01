@@ -1,5 +1,4 @@
 # SmartMCQ
-
 ## MCQ Generation from Text using T5 and NLP
 
 ## Overview
