@@ -1,9 +1,3 @@
-# Install in terminal one by one
-# pip install flask-bootstrap
-# pip install flask
-# pip install spacy
-# pip install PyPDF2
-
 from flask import Flask, render_template, request,make_response
 from flask_bootstrap import Bootstrap
 import spacy
