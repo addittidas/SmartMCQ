@@ -31,9 +31,32 @@ This project implements a system that automatically generates multiple-choice qu
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/your-username/mcq-generation.git
-   cd mcq-generation
+   git clone https://github.com/addittidas/SmartMCQ.git
+   cd SmartMCQ
    ```
 
+2. Set up a virtual environment:
+    ```bash
+    python -m venv .venv
+    .venv\Scripts\activate
+    ```
+
+3. Install dependencies:
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+4. Download s2v_old data from kaggle:
+    ```bash
+    https://www.kaggle.com/datasets/parthchokhra/s2v-old
+    ```
+
+5. Run the .ipynb files in notebooks folder.
+
+6. Running the application:
+    ```bash
+    python app.py
+    ```
+    
 ## License
 This project is licensed under the MIT License - see the LICENSE file for details.
